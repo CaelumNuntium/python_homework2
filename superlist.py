@@ -9,7 +9,10 @@ class SuperList(list):
         res = SuperList()
         with open(filename, 'r') as inp:
             for s in inp:
-                res.append(float(s))
+                if '.' in s:
+                    res.append(float(s))
+                else:
+                    res.append(int(s))
         return res
 
 
