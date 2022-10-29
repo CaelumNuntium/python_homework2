@@ -3,19 +3,20 @@ class FunctionCache(object):
         self.function = function
         self.cache = {}
 
-    def __call__(self, arg):
-        if arg in self.cache.keys():
-            print(f"Using cached value for argument {arg}")
+    def __call__(self, *args):
+        if args in self.cache.keys():
+            print(f"Using cached value for argument {args}")
         else:
-            self.cache[arg] = self.function(arg)
-        return self.cache[arg]
+            self.cache[args] = self.function(*args)
+        return self.cache[args]
 
 
-def square(x):
-    return x ** 2
+def power(x, y):
+    return x ** y
 
 
-square_cached = FunctionCache(square)
-print(square_cached(2))
-print(square_cached(4))
-print(square_cached(4))
+power_cached = FunctionCache(power)
+print(power_cached(2, 2))
+print(power_cached(4, 2))
+print(power_cached(4, 2))
+print(power_cached(2, 2))
